@@ -1,0 +1,50 @@
+﻿@model ShoppingCartMVC.Models.tblProduct
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype="multipart/form-data"}))
+{
+
+    <div class="container">
+        <h2>Add Product</h2>
+        <div class="row">
+            <div class="col-lg-4">
+
+
+                <form class="bg-white p-5 contact-form">
+                    <div class="form-group">
+                        <span>Name:</span>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <span>Categories:</span>
+                        @Html.DropDownListFor(m => m.CatId, ViewBag.CatList as SelectList, "-- Select Category ---")
+                    </div>
+
+                    <div class="form-group">
+                        <span>Description:</span>
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <span>Unit Price:</span>
+                        @Html.TextBoxFor(m => m.Unit, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <span>Select Image:</span>
+                      <input type="file" name="Image" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add Product" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+                <h3 style="color:red;">@TempData["msg"]</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+}

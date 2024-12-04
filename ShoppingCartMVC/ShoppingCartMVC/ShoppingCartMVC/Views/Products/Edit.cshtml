@@ -1,0 +1,66 @@
+﻿@model ShoppingCartMVC.Models.tblProduct
+
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype="multipart/form-data" }))
+{
+  
+    <div class="form-horizontal">
+        <h4>Update Products</h4>
+        <hr />
+      
+        @Html.HiddenFor(model => model.ProID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+              
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+              
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+            
+            </div>
+        </div>
+
+        <div class="form-group">
+             <span>Select Image:</span>
+            <div class="col-md-10">
+              
+                <img src="~/Uploads/@Model.Image" style="width:150px; height:100px;" class="img-responsive" />
+                <input type="file" name="Image" />
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CatId, "CatId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CatId", ViewBag.CatList as SelectList, htmlAttributes: new { @class = "form-control" })
+              
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+    
+    <p>@TempData["msg"]</p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

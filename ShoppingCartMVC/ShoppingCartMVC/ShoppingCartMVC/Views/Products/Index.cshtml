@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShoppingCartMVC.Models.vw_getallproducts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#searchBox").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<div class="container">
+    <h2>View Products</h2>
+    <div class="form-group">
+        <input type="text" class="form-control col-lg-4 ml-auto" placeholder="Search Here" id="searchBox" />
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Desc</th>
+                <th>Unit</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProID</td>
+                    <td>@item.cat_name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Unit</td>
+                    <td><img src="~/Uploads/@item.Image" style="width:150px; height:100px;" /></td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Products", new { id = item.ProID})" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("Delete", "Products", new { id = item.ProID })" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+

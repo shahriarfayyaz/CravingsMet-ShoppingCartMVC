@@ -1,0 +1,29 @@
+﻿@model ShoppingCartMVC.Models.tblProduct
+
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+
+   
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="hidden" name="id" value="@Model.ProID" />
+            <img src="~/Uploads/@Model.Image" style="height:250px;width:100%" />
+        </div>
+
+        <div class="col-lg-6">
+            <h3>@Model.Name</h3>
+           
+            <p>@Model.Description</p>
+            <p>৳. <strong>@Model.Unit</strong></p>
+            <input type="number"  min="1" max="10"  name="qty" />
+            <input type="submit" value="Add to Cart" class="btn btn-warning" />
+        </div>
+
+    </div>
+
+    }
+</div>
+

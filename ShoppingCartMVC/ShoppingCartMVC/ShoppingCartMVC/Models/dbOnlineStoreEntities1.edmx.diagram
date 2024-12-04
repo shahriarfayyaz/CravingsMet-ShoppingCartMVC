@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b57241388ce64ff0891fcee752cf0783" Name="Diagram1">
+        <EntityTypeShape EntityType="dbOnlineStoreModel.getallorder" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.getallorderuser" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.tblCategory" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.tblInvoice" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.tblOrder" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.tblProduct" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.tblUser" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.user_invoices" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.viewallproduct" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel.vw_getallproducts" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="dbOnlineStoreModel.FK_tblProducts_tblCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel.FK__tblInvoic__UserI__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel.FK__tblOrder__Invoic__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel.FK_tblOrder_tblProducts" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

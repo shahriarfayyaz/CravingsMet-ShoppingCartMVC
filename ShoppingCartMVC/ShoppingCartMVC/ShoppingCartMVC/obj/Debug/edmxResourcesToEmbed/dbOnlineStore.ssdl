@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbOnlineStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="getallorders">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="user" Type="varchar" MaxLength="50" />
+    <Property Name="pro_name" Type="varchar" MaxLength="50" />
+    <Property Name="Contact" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="getallorderusers">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="user" Type="varchar" MaxLength="50" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="CatId" />
+    </Key>
+    <Property Name="CatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblInvoices">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblOrders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="Contact" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="InvoiceId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Image" Type="varchar" MaxLength="1000" />
+    <Property Name="CatId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="RoleType" Type="int" />
+  </EntityType>
+  <EntityType Name="user_invoices">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Total" Type="int" />
+    <Property Name="Contact" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Customer" Type="varchar" MaxLength="50" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="viewallproducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" Nullable="false" />
+    <Property Name="pro_name" Type="varchar" MaxLength="50" />
+    <Property Name="pro_categories" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Image" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="vw_getallproducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" Nullable="false" />
+    <Property Name="cat_name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Image" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK__tblInvoic__UserI__1B0907CE">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblInvoices" Type="Self.tblInvoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblInvoices">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__Invoic__21B6055D">
+    <End Role="tblInvoices" Type="Self.tblInvoices" Multiplicity="0..1" />
+    <End Role="tblOrders" Type="Self.tblOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblInvoices">
+        <PropertyRef Name="InvoiceId" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="InvoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrder_tblProducts">
+    <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="0..1" />
+    <End Role="tblOrders" Type="Self.tblOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProducts">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProducts_tblCategories">
+    <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="0..1" />
+    <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategories">
+        <PropertyRef Name="CatId" />
+      </Principal>
+      <Dependent Role="tblProducts">
+        <PropertyRef Name="CatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbOnlineStoreModelStoreContainer">
+    <EntitySet Name="getallorders" EntityType="Self.getallorders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="getallorderusers" EntityType="Self.getallorderusers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInvoices" EntityType="Self.tblInvoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_invoices" EntityType="Self.user_invoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="viewallproducts" EntityType="Self.viewallproducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_getallproducts" EntityType="Self.vw_getallproducts" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblInvoic__UserI__1B0907CE" Association="Self.FK__tblInvoic__UserI__1B0907CE">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblInvoices" EntitySet="tblInvoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__Invoic__21B6055D" Association="Self.FK__tblOrder__Invoic__21B6055D">
+      <End Role="tblInvoices" EntitySet="tblInvoices" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrder_tblProducts" Association="Self.FK_tblOrder_tblProducts">
+      <End Role="tblProducts" EntitySet="tblProducts" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProducts_tblCategories" Association="Self.FK_tblProducts_tblCategories">
+      <End Role="tblCategories" EntitySet="tblCategories" />
+      <End Role="tblProducts" EntitySet="tblProducts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

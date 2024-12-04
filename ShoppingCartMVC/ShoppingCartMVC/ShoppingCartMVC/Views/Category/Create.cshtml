@@ -1,0 +1,30 @@
+﻿@model ShoppingCartMVC.Models.tblCategory
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="container">
+        <h2>Add Category</h2>
+        <div class="row">
+            <div class="col-lg-4">
+
+
+                <form class="bg-white p-5 contact-form">
+                    <div class="form-group">
+                        <span>Name:</span>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Add Category" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+                <h3 style="color:red;">@TempData["msg"]</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+}

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ShoppingCartMVC.Models.getallorderuser>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceDate)
+        </td>
+
+        <td>
+           <a href="@Url.Action("Invoice", "Home", new { id = item.InvoiceId })" class="btn btn-primary">Print</a>
+        </td>
+       
+    </tr>
+}
+
+</table>

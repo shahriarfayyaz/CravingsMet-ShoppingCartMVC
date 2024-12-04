@@ -1,0 +1,114 @@
+﻿
+@*showing cart item with conditions*@
+<div class="container">
+    @if (TempData["total"] == null)
+       {
+        <h1>cart is empty</h1>
+        <a href="@Url.Action("Index","Home")">go back</a>
+       }
+       else
+       {
+
+        <div class="row">
+
+            <div class="col-md-12 ftco-animate fadeInUp ftco-animated">
+                <div class="cart-list">
+                    <h3>Total Item : @TempData["item_count"]</h3>
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+
+                                <th></th>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in TempData["cart"] as List<ShoppingCartMVC.Models.Cart>)
+                        {
+
+
+                                <tr class="text-center">
+                                    <td class="product-remove"><a href="@Url.Action("remove", "Home", new { id = item.proid })"><span class="ion-ios-close"></span></a></td>
+                                    <td class="product-name">
+                                        <h3>@item.proid</h3>
+                                    </td>
+
+                                    <td class="product-name">
+                                        <h3>@item.proname</h3>
+
+                                    </td>
+
+                                    <td class="price">@item.price</td>
+
+                                    <td class="quantity">
+                                        @item.qty
+                                    </td>
+
+                                    <td class="total">৳.@item.bill</td>
+                                </tr><!-- END TR-->
+                        }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="row justify-content-end">
+
+
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate fadeInUp ftco-animated">
+                <div class="cart-total mb-3">
+                    <h3>Cart Total</h3>
+
+
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span>৳.@TempData["total"]</span>
+                    </p>
+                </div>
+
+                
+               
+            </div>
+        </div>
+    }
+
+  
+    @*show checkout button as per user rights*@
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a href="@Url.Action("Login","Account")" class="btn btn-primary py-3 px-4">Login</a>
+        <a href="@Url.Action("Register","Account")" class="btn btn-primary py-3 px-4">Register</a>
+    }
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("2"))
+        {
+
+            if (TempData["cart"] != null)
+            {
+                using (Html.BeginForm())
+                {
+
+                    <span>Contact :</span> <input type="text" name="contact" class="form-control col-lg-6" />
+                    <span>Address :</span><textarea name="address" class="form-control col-lg-6"></textarea>
+                    <input type="submit" value="Checkout" class="btn btn-primary py-3 px-4" />
+                }
+            }
+
+
+        }
+    }
+
+
+    </div>
+
