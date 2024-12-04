@@ -8,7 +8,6 @@ Admin panel for product and order management.
 Backend is powered by MS SQL for efficient data handling.
 
 
-Technologies Used
 Framework: ASP.NET MVC
 Database: Microsoft SQL Server
 Frontend: HTML, CSS, and Bootstrap
